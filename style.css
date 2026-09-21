@@ -1,0 +1,40 @@
+:root{
+  --purple:#4c1d95;--purple2:#7c3aed;--cream:#fff9ed;--ink:#211b2d;
+  --glass:rgba(255,255,255,.91);--border:rgba(69,43,97,.2)
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#f4efff,#fff8eb);font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink)}
+.app{width:min(1180px,96%);margin:18px auto 40px}
+.topbar,.mission,.lesson,.controls{background:var(--glass);border:1px solid var(--border);border-radius:20px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;color:#6d5b78}
+h1{margin:4px 0 0;font-size:clamp(20px,3vw,34px)}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.stats div{background:#fff;border:1px solid #ded5e8;padding:10px 13px;border-radius:999px;min-width:74px;text-align:center}
+.mission{margin-top:12px;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.professor{width:82px;min-width:82px;height:92px;border-radius:42px 42px 18px 18px;background:linear-gradient(#d9c8ff,#8b5cf6);display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:inset 0 -8px 20px #5b21b6}
+.prof-head{font-size:42px;position:absolute;top:3px}.prof-body{font-size:48px;position:absolute;bottom:-9px}
+.speech{background:#fff7d6;border:2px solid #e9c45d;border-radius:16px;padding:12px 15px;flex:1;position:relative}
+.speech:before{content:"";position:absolute;left:-12px;top:34px;border-width:9px 12px 9px 0;border-style:solid;border-color:transparent #e9c45d transparent transparent}
+.name{font-weight:900;color:#5b21b6}.speech p{margin:5px 0 0;font-size:clamp(15px,2vw,19px)}
+.scene-wrap{margin-top:12px;border-radius:22px;overflow:hidden;border:4px solid #3b2850;background:#241b2d;box-shadow:0 12px 30px rgba(35,20,50,.18)}
+.scene{position:relative;width:100%;line-height:0;overflow:hidden}
+.scene>img{width:100%;display:block;user-select:none}
+.hotspot{position:absolute;width:clamp(36px,5.2vw,66px);height:clamp(36px,5.2vw,66px);border:0;background:transparent;border-radius:50%;cursor:pointer;transform:translate(-50%,-50%);outline:none}
+.hotspot:focus-visible{outline:4px solid #fff;box-shadow:0 0 0 7px #7c3aed}
+.hotspot.hint{animation:pulse 1s infinite;box-shadow:0 0 0 6px rgba(255,231,73,.8);background:rgba(255,231,73,.18)}
+.hotspot.found{pointer-events:none}
+.hotspot.found:after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;background:rgba(35,150,75,.82);border:3px solid white;border-radius:50%;font-size:clamp(20px,3vw,36px);font-weight:900;color:#fff}
+.toast{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);line-height:1.25;max-width:88%;padding:12px 18px;border-radius:15px;background:rgba(25,18,31,.92);color:#fff;font-weight:800;text-align:center;opacity:0;pointer-events:none;transition:.2s}
+.toast.show{opacity:1}.toast.good{background:rgba(20,110,58,.94)}.toast.bad{background:rgba(164,40,40,.95)}
+.controls{display:flex;gap:10px;margin-top:12px;padding:10px;justify-content:center}
+button{font:inherit}
+.controls button,.modal button{min-height:46px;border:0;border-radius:13px;padding:10px 18px;font-weight:900;cursor:pointer;background:var(--purple);color:#fff}
+.controls button:first-child{background:#f4c842;color:#2b2200}
+.lesson{margin-top:12px;padding:14px 18px;line-height:1.5}
+.modal{position:fixed;inset:0;background:rgba(22,13,31,.72);display:grid;place-items:center;padding:20px;z-index:20}
+.modal.hidden{display:none}.modal-card{width:min(460px,100%);background:#fff;border-radius:24px;padding:26px;text-align:center;box-shadow:0 25px 70px #0006}
+.trophy{font-size:64px}.modal-card h2{font-size:30px;margin:4px}.modal-card p{line-height:1.5}
+@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.18)}}
+@media(max-width:650px){.topbar{align-items:flex-start;flex-direction:column}.mission{align-items:flex-start}.professor{width:65px;min-width:65px;height:76px}.prof-head{font-size:34px}.prof-body{font-size:40px}.stats{width:100%}.stats div{flex:1}.app{width:98%;margin-top:5px}.scene-wrap{border-width:2px}}
+@media(prefers-reduced-motion:reduce){.hotspot.hint{animation:none}}

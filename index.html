@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#4c1d95">
+  <title>Hidden History — Detektif Sumber</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">HISTORYVERSE • TINGKATAN 1 • BAB 1</div>
+      <h1>🔎 Hidden History: Detektif Sumber</h1>
+    </div>
+    <div class="stats">
+      <div>⭐ <b id="score">0</b></div>
+      <div>❤️ <b id="lives">3</b></div>
+      <div>🏺 <b id="progress">0</b>/10</div>
+    </div>
+  </header>
+
+  <section class="mission">
+    <div class="professor" aria-hidden="true">
+      <div class="prof-head">👨🏻‍🏫</div>
+      <div class="prof-body">🥼</div>
+    </div>
+    <div class="speech">
+      <div class="name">Profesor Arif • Ahli Sejarah 3D</div>
+      <p id="missionText">Selamat datang, detektif. Bersedia untuk misi pertama?</p>
+    </div>
+  </section>
+
+  <section class="scene-wrap">
+    <div id="scene" class="scene" aria-label="Galeri muzium interaktif">
+      <img src="assets/museum-scene.png" alt="Galeri muzium 3D yang dipenuhi artifak dan barang pengalih perhatian">
+      <div id="hotspots"></div>
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="controls">
+    <button id="hintBtn" type="button">💡 Hint</button>
+    <button id="restartBtn" type="button">↻ Main Semula</button>
+  </section>
+
+  <section class="lesson" id="lesson">
+    <b>Ingat:</b> Sumber pertama ialah bahan asal daripada zaman yang dikaji. Sumber kedua ialah bahan yang dihasilkan melalui kajian, tafsiran atau penulisan berdasarkan sumber asal.
+  </section>
+</main>
+
+<div id="endModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="trophy">🏆</div>
+    <h2 id="endTitle">Misi selesai!</h2>
+    <p id="endText"></p>
+    <button id="playAgain" type="button">Main Lagi</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
