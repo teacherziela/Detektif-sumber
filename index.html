@@ -15,7 +15,7 @@ header{padding:16px 20px;display:flex;justify-content:space-between;align-items:
 .speech{flex:1;background:#fff5c9;border:2px solid #eabf3e;border-radius:16px;padding:13px 16px;line-height:1.4} .name{font-weight:900;color:#5b21b6}
 .scene-wrap{margin-top:10px;border:5px solid #2d1c3b;border-radius:22px;overflow:hidden;background:#24192d}
 .scene{position:relative;line-height:0} .scene>img{width:100%;display:block}
-.hotspot{position:absolute;width:clamp(38px,5vw,70px);height:clamp(38px,5vw,70px);transform:translate(-50%,-50%);border:0;border-radius:50%;background:transparent;cursor:pointer}
+.hotspot{position:absolute;width:clamp(48px,6.2vw,82px);height:clamp(48px,6.2vw,82px);transform:translate(-50%,-50%);border:0;border-radius:50%;background:transparent;cursor:pointer}
 .hotspot:focus-visible{outline:4px solid white;box-shadow:0 0 0 8px #7c3aed} .hotspot.hint{background:#ffe94d55;box-shadow:0 0 0 7px #ffe94dcc}
 .hotspot.found:after{content:"✓";position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;background:#198754dd;color:white;border:3px solid white;font-size:30px;font-weight:900}
 .toast{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:14px;background:#21182eee;color:white;line-height:1.3;font-weight:800;text-align:center;opacity:0;transition:.2s} .toast.show{opacity:1} .toast.good{background:#176b3eee} .toast.bad{background:#a72c2cee}
@@ -35,65 +35,63 @@ header{padding:16px 20px;display:flex;justify-content:space-between;align-items:
 </main>
 <div id="endModal" class="modal hidden"><div class="modal-card"><div class="trophy">🏆</div><h2 id="endTitle"></h2><p id="endText"></p><button id="playAgain">Main Lagi</button></div></div>
 <script>
-const objects = [
-  {id:"coin",name:"syiling lama",type:"first",x:25,y:76,why:"Syiling lama ialah bahan asal yang wujud pada zaman yang dikaji."},
-  {id:"pottery",name:"tembikar/artifak",type:"first",x:47,y:74,why:"Artifak ialah tinggalan asal manusia pada masa lalu."},
-  {id:"manuscript",name:"manuskrip asal",type:"first",x:39,y:65,why:"Manuskrip asal merupakan dokumen yang datang daripada zaman berkenaan."},
-  {id:"inscription",name:"batu bersurat",type:"first",x:72,y:72,why:"Batu bersurat ialah bukti asal yang mengandungi catatan daripada masa lalu."},
-  {id:"oldphoto",name:"foto asal",type:"first",x:76,y:28,why:"Foto asal yang dirakam pada waktu kejadian ialah sumber pertama."},
-  {id:"textbook",name:"buku teks sejarah",type:"second",x:56,y:67,why:"Buku teks disusun kemudian berdasarkan kajian dan pelbagai sumber."},
-  {id:"encyclopedia",name:"ensiklopedia",type:"second",x:18,y:55,why:"Ensiklopedia menghimpunkan maklumat yang telah dikaji dan ditulis semula."},
-  {id:"article",name:"artikel kajian",type:"second",x:83,y:65,why:"Artikel kajian ialah hasil penyelidikan dan tafsiran penulis."},
-  {id:"documentary",name:"dokumentari sejarah",type:"second",x:66,y:31,why:"Dokumentari sejarah dihasilkan kemudian berdasarkan kajian dan sumber lain."},
-  {id:"historybook",name:"buku sejarah moden",type:"second",x:32,y:62,why:"Buku sejarah moden ialah penulisan kemudian yang mentafsir sumber asal."},
 
-  // Distractors: deliberately tempting, but not answers for the source-classification missions.
-  {id:"plant",name:"pokok hiasan",type:"distractor",x:89,y:39,why:"Ini hanya hiasan muzium, bukan bahan sumber bagi misi ini."},
-  {id:"lamp",name:"lampu galeri",type:"distractor",x:54,y:19,why:"Lampu galeri bukan sumber sejarah bagi misi ini."},
-  {id:"chair",name:"kerusi moden",type:"distractor",x:86,y:78,why:"Kerusi moden ini ialah barang pengalih perhatian."},
-  {id:"frame",name:"bingkai hiasan",type:"distractor",x:12,y:29,why:"Bingkai hiasan ini bukan bahan sumber yang diminta."},
-  {id:"vase",name:"pasu hiasan moden",type:"distractor",x:91,y:68,why:"Jangan tertipu—ini pasu hiasan moden."}
+const objects = [
+  // Hotspot diselaraskan dengan objek yang BETUL-BETUL kelihatan dalam gambar muzium.
+  {id:"dinosaur",name:"fosil/rangka dinosaur",type:"first",x:45.5,y:29.5,why:"Fosil ialah sumber pertama kerana merupakan tinggalan asal daripada masa lampau."},
+  {id:"statue",name:"arca batu",type:"first",x:59.3,y:49.0,why:"Arca batu ialah artifak/tinggalan asal dan boleh digunakan sebagai sumber pertama."},
+  {id:"sword",name:"pedang lama",type:"first",x:61.0,y:85.0,why:"Pedang lama ialah artifak, iaitu objek asal peninggalan masyarakat terdahulu."},
+  {id:"camera",name:"kamera lama",type:"first",x:36.8,y:51.8,why:"Kamera lama sebagai artifak fizikal merupakan tinggalan asal daripada masa lalu."},
+  {id:"document",name:"dokumen lama",type:"first",x:18.0,y:55.5,why:"Dokumen asal ialah sumber pertama kerana datang terus daripada zaman yang dikaji."},
+
+  {id:"sejarahbook",name:"buku Sejarah Malaysia",type:"second",x:60.0,y:75.8,why:"Buku sejarah ialah sumber kedua kerana ditulis berdasarkan kajian dan sumber terdahulu."},
+  {id:"encyclopedia",name:"Ensiklopedia",type:"second",x:60.5,y:79.4,why:"Ensiklopedia ialah sumber kedua yang menghimpunkan maklumat daripada pelbagai kajian."},
+  {id:"displaybook",name:"buku rujukan pameran",type:"second",x:31.0,y:69.0,why:"Buku rujukan yang ditulis kemudian ialah sumber kedua."},
+  {id:"museumtext",name:"papan penerangan Zaman Prasejarah",type:"second",x:52.7,y:35.0,why:"Papan penerangan muzium ialah hasil penerangan dan tafsiran berdasarkan sumber asal."},
+  {id:"historypanel",name:"panel penerangan tamadun",type:"second",x:67.0,y:26.0,why:"Panel penerangan moden ialah sumber kedua kerana maklumatnya disusun daripada kajian."},
+
+  {id:"teddy",name:"patung beruang",type:"distractor",x:35.2,y:58.0,why:"Beruang ini cuma barang pengalih perhatian."},
+  {id:"plant",name:"pokok hiasan",type:"distractor",x:25.0,y:43.0,why:"Pokok hiasan bukan sumber sejarah untuk misi ini."},
+  {id:"globe",name:"glob",type:"distractor",x:82.2,y:35.0,why:"Glob ini ialah barang pameran moden, bukan jawapan misi."},
+  {id:"gramophone",name:"gramofon",type:"distractor",x:72.5,y:62.0,why:"Bukan kategori sumber yang sedang diminta."},
+  {id:"football",name:"bola",type:"distractor",x:82.0,y:84.0,why:"Ha, jangan kena tipu 😆 Bola ini distractor."},
+  {id:"cat",name:"kucing",type:"distractor",x:47.0,y:84.0,why:"Kucing pun masuk muzium, tapi bukan sumber sejarah. 😹"},
+  {id:"shoe",name:"kasut moden",type:"distractor",x:54.5,y:89.0,why:"Kasut moden ini sengaja diletakkan sebagai distractor."}
 ];
 
 const missions = [
-  {type:"first",text:"Cari satu SUMBER PERTAMA — bahan asal daripada zaman yang dikaji."},
-  {type:"second",text:"Sekarang cari satu SUMBER KEDUA — bahan yang dihasilkan berdasarkan kajian sumber asal."},
-  {type:"first",text:"Profesor perlukan bukti asal. Cari satu lagi SUMBER PERTAMA."},
-  {type:"second",text:"Cari bahan yang mengandungi tafsiran atau penulisan kemudian: SUMBER KEDUA."},
-  {type:"first",text:"Cari tinggalan atau rekod asal yang boleh menjadi SUMBER PERTAMA."},
-  {type:"second",text:"Cari satu hasil penyelidikan moden: SUMBER KEDUA."},
-  {type:"first",text:"Misi semakin sukar! Cari satu lagi bukti asal, iaitu SUMBER PERTAMA."},
-  {type:"second",text:"Jangan tertipu dengan barang hiasan. Cari SUMBER KEDUA."},
-  {type:"first",text:"Misi 9: cari SUMBER PERTAMA yang masih belum kamu temui."},
-  {type:"second",text:"Misi terakhir! Cari SUMBER KEDUA yang masih belum ditemui."}
+  {type:"first",text:"Cari satu SUMBER PERTAMA. Cari bukti asal yang tersembunyi dalam muzium."},
+  {type:"second",text:"Cari satu SUMBER KEDUA — bahan penerangan atau penulisan hasil kajian."},
+  {type:"first",text:"Cari satu lagi SUMBER PERTAMA. Perhatikan artifak dan tinggalan asal."},
+  {type:"second",text:"Cari satu lagi SUMBER KEDUA. Jangan tertipu dengan barang hiasan."},
+  {type:"first",text:"Cari SUMBER PERTAMA yang belum ditemui."},
+  {type:"second",text:"Cari SUMBER KEDUA yang belum ditemui."},
+  {type:"first",text:"Detektif, cari satu lagi bukti asal: SUMBER PERTAMA."},
+  {type:"second",text:"Cari bahan hasil penulisan atau tafsiran: SUMBER KEDUA."},
+  {type:"first",text:"Misi 9: cari SUMBER PERTAMA terakhir yang tersembunyi."},
+  {type:"second",text:"Misi akhir: cari SUMBER KEDUA terakhir."}
 ];
 
 let score=0,lives=3,step=0,toastTimer;
-const used=new Set();
-const $=s=>document.querySelector(s);
-const hotspots=$("#hotspots");
+const used=new Set(), $=s=>document.querySelector(s), hotspots=$("#hotspots");
 
 objects.forEach(o=>{
   const b=document.createElement("button");
   b.type="button"; b.className="hotspot"; b.dataset.id=o.id;
   b.style.left=o.x+"%"; b.style.top=o.y+"%";
   b.setAttribute("aria-label",o.name);
-  b.title="";
   b.addEventListener("click",()=>choose(o,b));
   hotspots.appendChild(b);
 });
 
 function current(){return missions[step]}
 function render(){
-  $("#score").textContent=score;
-  $("#lives").textContent=lives;
-  $("#progress").textContent=step;
+  $("#score").textContent=score; $("#lives").textContent=lives; $("#progress").textContent=step;
   if(step<missions.length) $("#missionText").innerHTML=`<b>Misi ${step+1}:</b> ${current().text}`;
 }
 function showToast(msg,kind=""){
-  const t=$("#toast"); clearTimeout(toastTimer);
-  t.className="toast show "+kind; t.innerHTML=msg;
-  toastTimer=setTimeout(()=>t.className="toast",2600);
+  const t=$("#toast"); clearTimeout(toastTimer); t.className="toast show "+kind; t.innerHTML=msg;
+  toastTimer=setTimeout(()=>t.className="toast",2800);
 }
 function choose(o,b){
   if(step>=missions.length||lives<=0)return;
@@ -101,13 +99,13 @@ function choose(o,b){
   if(o.type===current().type && !used.has(o.id)){
     score+=10; used.add(o.id); b.classList.add("found");
     showToast(`✅ BETUL! +10 — <b>${o.name}</b><br>${o.why}`,"good");
-    step++;
-    if(step===missions.length){render();setTimeout(()=>finish(true),900)} else render();
+    step++; render();
+    if(step===missions.length)setTimeout(()=>finish(true),1000);
   }else{
-    score=Math.max(0,score-5); lives--;
-    showToast(`❌ SALAH! −5 — <b>${o.name}</b><br>${o.why}`,"bad");
-    render();
-    if(lives<=0)setTimeout(()=>finish(false),900);
+    score=Math.max(0,score-5); lives--; render();
+    const msg=used.has(o.id) ? "Objek ini sudah ditemui. Cari objek lain." : o.why;
+    showToast(`❌ SALAH! −5 — <b>${o.name}</b><br>${msg}`,"bad");
+    if(lives<=0)setTimeout(()=>finish(false),1000);
   }
 }
 function hint(){
@@ -116,22 +114,18 @@ function hint(){
   if(!candidates.length)return;
   const o=candidates[Math.floor(Math.random()*candidates.length)];
   const b=document.querySelector(`[data-id="${o.id}"]`);
-  b.classList.add("hint");
-  showToast("💡 Perhatikan objek yang berkilau. Hint tidak menolak markah.");
-  setTimeout(()=>b.classList.remove("hint"),1800);
+  b.classList.add("hint"); showToast(`💡 Tengok betul-betul kawasan yang berkilau…`);
+  setTimeout(()=>b.classList.remove("hint"),2000);
 }
 function finish(win){
   $("#endTitle").textContent=win?"🏆 Misi Selesai!":"💥 Nyawa Habis";
-  $("#endText").innerHTML=win
-    ?`Syabas, Detektif! Skor akhir kamu <b>${score}</b>. Kamu telah berlatih membezakan sumber pertama dan sumber kedua.`
-    :`Skor kamu <b>${score}</b>. Ingat: bahan asal = sumber pertama; hasil kajian/tafsiran = sumber kedua. Cuba lagi!`;
+  $("#endText").innerHTML=win?`Syabas! Skor akhir <b>${score}</b>. Kamu berjaya membezakan sumber pertama dan sumber kedua.`:`Skor <b>${score}</b>. Cuba lagi dan perhatikan jenis sumber yang diminta.`;
   $("#endModal").classList.remove("hidden");
 }
 function restart(){
   score=0;lives=3;step=0;used.clear();
   document.querySelectorAll(".hotspot").forEach(b=>b.classList.remove("found","hint"));
-  $("#endModal").classList.add("hidden"); render();
-  showToast("🔎 Misi dimulakan semula. Jangan tekan semua barang ya! 😆");
+  $("#endModal").classList.add("hidden"); render(); showToast("🔎 Misi dimulakan semula!");
 }
 $("#hintBtn").addEventListener("click",hint);
 $("#restartBtn").addEventListener("click",restart);

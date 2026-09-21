@@ -1,3 +1,6 @@
-VERSI FIX — satu fail utama sahaja.
-Upload index.html ke root repository GitHub dan gantikan index.html lama.
-Imej muzium dan Profesor 3D sudah ditanam terus dalam index.html, jadi tiada lagi masalah folder assets/image path.
+HOTSPOT FIX
+Gantikan index.html lama di GitHub dengan index.html ini.
+Hotspot kini dipadankan dengan objek sebenar pada scene:
+SUMBER PERTAMA: fosil/rangka dinosaur, arca batu, pedang lama, kamera lama, dokumen lama.
+SUMBER KEDUA: buku Sejarah Malaysia, Ensiklopedia, buku rujukan, papan penerangan prasejarah, panel penerangan.
+Distractor juga boleh diklik dan akan menolak 5 markah.
