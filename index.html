@@ -37,40 +37,42 @@ header{padding:16px 20px;display:flex;justify-content:space-between;align-items:
 <script>
 
 const objects = [
-  // Hotspot diselaraskan dengan objek yang BETUL-BETUL kelihatan dalam gambar muzium.
-  {id:"dinosaur",name:"fosil/rangka dinosaur",type:"first",x:45.5,y:29.5,why:"Fosil ialah sumber pertama kerana merupakan tinggalan asal daripada masa lampau."},
-  {id:"statue",name:"arca batu",type:"first",x:59.3,y:49.0,why:"Arca batu ialah artifak/tinggalan asal dan boleh digunakan sebagai sumber pertama."},
-  {id:"sword",name:"pedang lama",type:"first",x:61.0,y:85.0,why:"Pedang lama ialah artifak, iaitu objek asal peninggalan masyarakat terdahulu."},
-  {id:"camera",name:"kamera lama",type:"first",x:36.8,y:51.8,why:"Kamera lama sebagai artifak fizikal merupakan tinggalan asal daripada masa lalu."},
-  {id:"document",name:"dokumen lama",type:"first",x:18.0,y:55.5,why:"Dokumen asal ialah sumber pertama kerana datang terus daripada zaman yang dikaji."},
+  {id:"dinosaur",name:"fosil/rangka dinosaur",type:"first",x:45.5,y:29.5,why:"Fosil ialah tinggalan asal daripada masa lampau, jadi dikategorikan sebagai sumber pertama."},
+  {id:"statue",name:"arca batu",type:"first",x:59.3,y:49.0,why:"Arca batu ialah artifak/tinggalan asal, jadi merupakan sumber pertama."},
+  {id:"sword",name:"pedang lama",type:"first",x:61.0,y:85.0,why:"Pedang lama ialah artifak asal peninggalan masyarakat terdahulu, jadi sumber pertama."},
+  {id:"camera",name:"kamera lama",type:"first",x:36.8,y:51.8,why:"Kamera lama sebagai artifak fizikal daripada masa lalu dikategorikan sebagai sumber pertama."},
+  {id:"document",name:"dokumen lama",type:"first",x:18.0,y:55.5,why:"Dokumen asal yang dihasilkan pada zaman berkenaan ialah sumber pertama."},
 
-  {id:"sejarahbook",name:"buku Sejarah Malaysia",type:"second",x:60.0,y:75.8,why:"Buku sejarah ialah sumber kedua kerana ditulis berdasarkan kajian dan sumber terdahulu."},
-  {id:"encyclopedia",name:"Ensiklopedia",type:"second",x:60.5,y:79.4,why:"Ensiklopedia ialah sumber kedua yang menghimpunkan maklumat daripada pelbagai kajian."},
-  {id:"displaybook",name:"buku rujukan pameran",type:"second",x:31.0,y:69.0,why:"Buku rujukan yang ditulis kemudian ialah sumber kedua."},
-  {id:"museumtext",name:"papan penerangan Zaman Prasejarah",type:"second",x:52.7,y:35.0,why:"Papan penerangan muzium ialah hasil penerangan dan tafsiran berdasarkan sumber asal."},
-  {id:"historypanel",name:"panel penerangan tamadun",type:"second",x:67.0,y:26.0,why:"Panel penerangan moden ialah sumber kedua kerana maklumatnya disusun daripada kajian."},
+  {id:"sejarahbook",name:"buku Sejarah Malaysia",type:"second",x:60.0,y:75.8,why:"Buku sejarah ditulis kemudian berdasarkan kajian dan sumber asal, jadi sumber kedua."},
+  {id:"encyclopedia",name:"Ensiklopedia",type:"second",x:60.5,y:79.4,why:"Ensiklopedia menghimpunkan maklumat hasil kajian, jadi sumber kedua."},
+  {id:"displaybook",name:"buku rujukan",type:"second",x:31.0,y:69.0,why:"Buku rujukan yang ditulis berdasarkan sumber lain ialah sumber kedua."},
+  {id:"museumtext",name:"papan penerangan Zaman Prasejarah",type:"second",x:52.7,y:35.0,why:"Papan penerangan moden menyampaikan hasil kajian dan tafsiran, jadi sumber kedua."},
+  {id:"historypanel",name:"panel penerangan tamadun",type:"second",x:67.0,y:26.0,why:"Panel penerangan moden disusun berdasarkan kajian, jadi sumber kedua."},
 
-  {id:"teddy",name:"patung beruang",type:"distractor",x:35.2,y:58.0,why:"Beruang ini cuma barang pengalih perhatian."},
-  {id:"plant",name:"pokok hiasan",type:"distractor",x:25.0,y:43.0,why:"Pokok hiasan bukan sumber sejarah untuk misi ini."},
-  {id:"globe",name:"glob",type:"distractor",x:82.2,y:35.0,why:"Glob ini ialah barang pameran moden, bukan jawapan misi."},
-  {id:"gramophone",name:"gramofon",type:"distractor",x:72.5,y:62.0,why:"Bukan kategori sumber yang sedang diminta."},
-  {id:"football",name:"bola",type:"distractor",x:82.0,y:84.0,why:"Ha, jangan kena tipu 😆 Bola ini distractor."},
-  {id:"cat",name:"kucing",type:"distractor",x:47.0,y:84.0,why:"Kucing pun masuk muzium, tapi bukan sumber sejarah. 😹"},
-  {id:"shoe",name:"kasut moden",type:"distractor",x:54.5,y:89.0,why:"Kasut moden ini sengaja diletakkan sebagai distractor."}
+  {id:"teddy",name:"patung beruang",type:"distractor",x:35.2,y:58.0,why:"Ini barang pengalih perhatian, bukan sumber sejarah bagi misi ini."},
+  {id:"plant",name:"pokok hiasan",type:"distractor",x:25.0,y:43.0,why:"Pokok hiasan bukan sumber sejarah bagi misi ini."},
+  {id:"globe",name:"glob moden",type:"distractor",x:82.2,y:35.0,why:"Glob moden ini ialah distractor dalam permainan."},
+  {id:"gramophone",name:"gramofon hiasan",type:"distractor",x:72.5,y:62.0,why:"Objek ini bukan jawapan bagi kategori sumber yang diminta."},
+  {id:"football",name:"bola",type:"distractor",x:82.0,y:84.0,why:"Bola ialah barang pengalih perhatian."},
+  {id:"cat",name:"kucing",type:"distractor",x:47.0,y:84.0,why:"Kucing bukan sumber sejarah. 😹"},
+  {id:"shoe",name:"kasut moden",type:"distractor",x:54.5,y:89.0,why:"Kasut moden ini sengaja menjadi distractor."}
 ];
 
-const missions = [
-  {type:"first",text:"Cari satu SUMBER PERTAMA. Cari bukti asal yang tersembunyi dalam muzium."},
-  {type:"second",text:"Cari satu SUMBER KEDUA — bahan penerangan atau penulisan hasil kajian."},
-  {type:"first",text:"Cari satu lagi SUMBER PERTAMA. Perhatikan artifak dan tinggalan asal."},
-  {type:"second",text:"Cari satu lagi SUMBER KEDUA. Jangan tertipu dengan barang hiasan."},
-  {type:"first",text:"Cari SUMBER PERTAMA yang belum ditemui."},
-  {type:"second",text:"Cari SUMBER KEDUA yang belum ditemui."},
-  {type:"first",text:"Detektif, cari satu lagi bukti asal: SUMBER PERTAMA."},
-  {type:"second",text:"Cari bahan hasil penulisan atau tafsiran: SUMBER KEDUA."},
-  {type:"first",text:"Misi 9: cari SUMBER PERTAMA terakhir yang tersembunyi."},
-  {type:"second",text:"Misi akhir: cari SUMBER KEDUA terakhir."}
-];
+// Turutan kategori diacak setiap permainan: 5 misi sumber pertama + 5 misi sumber kedua.
+let missions=[];
+function shuffle(a){
+  const b=[...a];
+  for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}
+  return b;
+}
+function makeMissions(){
+  missions=shuffle(["first","first","first","first","first","second","second","second","second","second"]).map((type,i)=>({
+    type,
+    text:type==="first"
+      ?"Cari mana-mana SUMBER PERTAMA yang masih belum ditemui."
+      :"Cari mana-mana SUMBER KEDUA yang masih belum ditemui."
+  }));
+}
 
 let score=0,lives=3,step=0,toastTimer;
 const used=new Set(), $=s=>document.querySelector(s), hotspots=$("#hotspots");
@@ -85,26 +87,36 @@ objects.forEach(o=>{
 });
 
 function current(){return missions[step]}
+function label(type){return type==="first"?"SUMBER PERTAMA":"SUMBER KEDUA"}
 function render(){
   $("#score").textContent=score; $("#lives").textContent=lives; $("#progress").textContent=step;
   if(step<missions.length) $("#missionText").innerHTML=`<b>Misi ${step+1}:</b> ${current().text}`;
 }
 function showToast(msg,kind=""){
   const t=$("#toast"); clearTimeout(toastTimer); t.className="toast show "+kind; t.innerHTML=msg;
-  toastTimer=setTimeout(()=>t.className="toast",2800);
+  toastTimer=setTimeout(()=>t.className="toast",3000);
 }
 function choose(o,b){
   if(step>=missions.length||lives<=0)return;
   document.querySelectorAll(".hotspot").forEach(x=>x.classList.remove("hint"));
-  if(o.type===current().type && !used.has(o.id)){
+
+  if(used.has(o.id)){
+    showToast(`ℹ️ <b>${o.name}</b> sudah ditemui. Cari objek lain.`);
+    return; // no penalty for accidentally clicking an already-found item
+  }
+
+  // Core rule: correctness depends ONLY on the object's real category vs current requested category.
+  if(o.type===current().type){
     score+=10; used.add(o.id); b.classList.add("found");
     showToast(`✅ BETUL! +10 — <b>${o.name}</b><br>${o.why}`,"good");
     step++; render();
     if(step===missions.length)setTimeout(()=>finish(true),1000);
-  }else{
+  } else {
     score=Math.max(0,score-5); lives--; render();
-    const msg=used.has(o.id) ? "Objek ini sudah ditemui. Cari objek lain." : o.why;
-    showToast(`❌ SALAH! −5 — <b>${o.name}</b><br>${msg}`,"bad");
+    let explanation=o.why;
+    if(o.type==="first") explanation=`${o.name} sebenarnya SUMBER PERTAMA. ${o.why}`;
+    if(o.type==="second") explanation=`${o.name} sebenarnya SUMBER KEDUA. ${o.why}`;
+    showToast(`❌ SALAH! −5<br>${explanation}`,"bad");
     if(lives<=0)setTimeout(()=>finish(false),1000);
   }
 }
@@ -114,23 +126,25 @@ function hint(){
   if(!candidates.length)return;
   const o=candidates[Math.floor(Math.random()*candidates.length)];
   const b=document.querySelector(`[data-id="${o.id}"]`);
-  b.classList.add("hint"); showToast(`💡 Tengok betul-betul kawasan yang berkilau…`);
+  b.classList.add("hint"); showToast(`💡 Cari ${label(current().type)} di kawasan yang berkilau.`);
   setTimeout(()=>b.classList.remove("hint"),2000);
 }
 function finish(win){
   $("#endTitle").textContent=win?"🏆 Misi Selesai!":"💥 Nyawa Habis";
-  $("#endText").innerHTML=win?`Syabas! Skor akhir <b>${score}</b>. Kamu berjaya membezakan sumber pertama dan sumber kedua.`:`Skor <b>${score}</b>. Cuba lagi dan perhatikan jenis sumber yang diminta.`;
+  $("#endText").innerHTML=win
+    ?`Syabas! Skor akhir <b>${score}</b>. Dalam setiap misi, mana-mana objek yang benar-benar sepadan dengan kategori diterima.`
+    :`Skor <b>${score}</b>. Bezakan bahan asal (sumber pertama) dengan hasil kajian/tafsiran (sumber kedua).`;
   $("#endModal").classList.remove("hidden");
 }
 function restart(){
-  score=0;lives=3;step=0;used.clear();
+  score=0;lives=3;step=0;used.clear();makeMissions();
   document.querySelectorAll(".hotspot").forEach(b=>b.classList.remove("found","hint"));
-  $("#endModal").classList.add("hidden"); render(); showToast("🔎 Misi dimulakan semula!");
+  $("#endModal").classList.add("hidden"); render(); showToast("🔀 Susunan misi baru telah dirandom!");
 }
 $("#hintBtn").addEventListener("click",hint);
 $("#restartBtn").addEventListener("click",restart);
 $("#playAgain").addEventListener("click",restart);
-render();
+makeMissions(); render();
 
 </script>
 </body></html>
